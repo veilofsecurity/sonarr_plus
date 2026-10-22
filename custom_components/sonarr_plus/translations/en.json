@@ -1,0 +1,184 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Service is already configured",
+      "unknown": "Unexpected error"
+    },
+    "error": {
+      "cannot_connect": "Failed to connect",
+      "invalid_auth": "Invalid authentication"
+    },
+    "flow_title": "{name}",
+    "step": {
+      "reauth_confirm": {
+        "description": "The Sonarr integration needs to be manually re-authenticated with the Sonarr API hosted at: {url}",
+        "title": "Reauthentication needed"
+      },
+      "user": {
+        "data": {
+          "api_key": "API key",
+          "url": "URL"
+        },
+        "sections": {
+          "more_options": {
+            "data": {
+              "verify_ssl": "Verify SSL certificate"
+            },
+            "name": "More options"
+          }
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "commands": {
+        "name": "Commands",
+        "unit_of_measurement": "commands"
+      },
+      "diskspace": {
+        "name": "Disk space"
+      },
+      "queue": {
+        "name": "Queue",
+        "unit_of_measurement": "episodes"
+      },
+      "series": {
+        "name": "Shows",
+        "unit_of_measurement": "series"
+      },
+      "upcoming": {
+        "name": "Upcoming",
+        "unit_of_measurement": "episodes"
+      },
+      "wanted": {
+        "name": "Wanted",
+        "unit_of_measurement": "episodes"
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "upcoming_days": "Number of upcoming days to display",
+          "wanted_max_items": "Max number of wanted items to display"
+        }
+      }
+    }
+  },
+  "services": {
+    "get_diskspace": {
+      "description": "Gets disk space information for all configured paths.",
+      "fields": {
+        "entry_id": {
+          "description": "ID of the config entry to use.",
+          "name": "Sonarr entry"
+        },
+        "space_unit": {
+          "description": "Unit for space values. Use binary units (KiB, MiB, GiB, TiB, PiB) for 1024-based values or decimal units (KB, MB, GB, TB, PB) for 1000-based values. The default is bytes.",
+          "name": "Space unit"
+        }
+      },
+      "name": "Get disk space"
+    },
+    "get_episodes": {
+      "description": "Gets episodes for a specific series.",
+      "fields": {
+        "entry_id": {
+          "description": "ID of the config entry to use.",
+          "name": "Sonarr entry"
+        },
+        "season_number": {
+          "description": "Optional season number to filter episodes by.",
+          "name": "Season number"
+        },
+        "series_id": {
+          "description": "The ID of the series to get episodes for.",
+          "name": "Series ID"
+        }
+      },
+      "name": "Get episodes"
+    },
+    "get_missing_episodes": {
+      "name": "Get missing episodes",
+      "description": "Gets monitored episodes without a file that aired within the last number of days. The returned episode_ids can be passed to Search episodes.",
+      "fields": {
+        "entry_id": {
+          "description": "ID of the config entry to use.",
+          "name": "Sonarr entry"
+        },
+        "days": {
+          "name": "Days",
+          "description": "How many days back to look for episodes that aired. The default is 30."
+        }
+      }
+    },
+    "get_queue": {
+      "description": "Gets all episodes currently in the download queue with their progress and details.",
+      "fields": {
+        "entry_id": {
+          "description": "ID of the config entry to use.",
+          "name": "Sonarr entry"
+        },
+        "max_items": {
+          "description": "Maximum number of items to return (0 = no limit).",
+          "name": "Max items"
+        }
+      },
+      "name": "Get queue"
+    },
+    "get_series": {
+      "description": "Gets all series in Sonarr with their details and statistics.",
+      "fields": {
+        "entry_id": {
+          "description": "ID of the config entry to use.",
+          "name": "Sonarr entry"
+        }
+      },
+      "name": "Get series"
+    },
+    "get_upcoming": {
+      "description": "Gets upcoming episodes from the calendar.",
+      "fields": {
+        "days": {
+          "description": "Number of days to look ahead for upcoming episodes.",
+          "name": "Days"
+        },
+        "entry_id": {
+          "description": "ID of the config entry to use.",
+          "name": "Sonarr entry"
+        }
+      },
+      "name": "Get upcoming"
+    },
+    "get_wanted": {
+      "description": "Gets wanted/missing episodes that are being searched for.",
+      "fields": {
+        "entry_id": {
+          "description": "ID of the config entry to use.",
+          "name": "Sonarr entry"
+        },
+        "max_items": {
+          "description": "Maximum number of items to return (0 = no limit).",
+          "name": "Max items"
+        }
+      },
+      "name": "Get wanted"
+    },
+    "search_episodes": {
+      "name": "Search episodes",
+      "description": "Starts a Sonarr search for the given episodes.",
+      "fields": {
+        "entry_id": {
+          "description": "ID of the config entry to use.",
+          "name": "Sonarr entry"
+        },
+        "episode_ids": {
+          "name": "Episode IDs",
+          "description": "List of Sonarr episode IDs to search for, for example the episode_ids returned by Get missing episodes."
+        }
+      }
+    }
+  }
+}

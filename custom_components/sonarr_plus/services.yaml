@@ -1,0 +1,129 @@
+get_series:
+  fields:
+    entry_id:
+      required: true
+      selector:
+        config_entry:
+          integration: sonarr_plus
+
+get_queue:
+  fields:
+    entry_id:
+      required: true
+      selector:
+        config_entry:
+          integration: sonarr_plus
+    max_items:
+      required: false
+      default: 0
+      selector:
+        number:
+          min: 0
+          max: 500
+          mode: box
+
+get_diskspace:
+  fields:
+    entry_id:
+      required: true
+      selector:
+        config_entry:
+          integration: sonarr_plus
+    space_unit:
+      required: false
+      default: bytes
+      selector:
+        select:
+          options:
+            - bytes
+            - kb
+            - kib
+            - mb
+            - mib
+            - gb
+            - gib
+            - tb
+            - tib
+            - pb
+            - pib
+
+get_upcoming:
+  fields:
+    entry_id:
+      required: true
+      selector:
+        config_entry:
+          integration: sonarr_plus
+    days:
+      required: false
+      default: 1
+      selector:
+        number:
+          min: 1
+          max: 30
+          mode: box
+
+get_wanted:
+  fields:
+    entry_id:
+      required: true
+      selector:
+        config_entry:
+          integration: sonarr_plus
+    max_items:
+      required: false
+      default: 0
+      selector:
+        number:
+          min: 0
+          max: 500
+          mode: box
+
+get_episodes:
+  fields:
+    entry_id:
+      required: true
+      selector:
+        config_entry:
+          integration: sonarr_plus
+    series_id:
+      required: true
+      selector:
+        number:
+          min: 1
+          mode: box
+    season_number:
+      required: false
+      selector:
+        number:
+          min: 0
+          mode: box
+
+get_missing_episodes:
+  fields:
+    entry_id:
+      required: true
+      selector:
+        config_entry:
+          integration: sonarr_plus
+    days:
+      required: false
+      default: 30
+      selector:
+        number:
+          min: 1
+          max: 3650
+          mode: box
+
+search_episodes:
+  fields:
+    entry_id:
+      required: true
+      selector:
+        config_entry:
+          integration: sonarr_plus
+    episode_ids:
+      required: true
+      example: "[101, 102, 103]"
+      selector:
+        object:
