@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 
 from aiopyarr import ArrConnectionException
 from aiopyarr.models.sonarr import SonarrCommands
-import probatio
+import voluptuous as vol
 import pytest
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
@@ -76,7 +76,7 @@ async def test_get_missing_episodes_invalid_days(
     hass: HomeAssistant, init_integration: MockConfigEntry, days
 ) -> None:
     """Invalid day values are rejected."""
-    with pytest.raises(probatio.MultipleInvalid):
+    with pytest.raises(vol.MultipleInvalid):
         await _get_missing(hass, init_integration, days=days)
 
 
@@ -108,7 +108,7 @@ async def test_search_episodes_invalid_ids(
     hass: HomeAssistant, init_integration: MockConfigEntry, ids
 ) -> None:
     """An empty or malformed id list is rejected."""
-    with pytest.raises(probatio.MultipleInvalid):
+    with pytest.raises(vol.MultipleInvalid):
         await hass.services.async_call(
             DOMAIN,
             SERVICE_SEARCH_EPISODES,

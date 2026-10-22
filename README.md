@@ -54,4 +54,4 @@ python3 -m venv .venv && .venv/bin/pip install pytest-homeassistant-custom-compo
 .venv/bin/pytest
 ```
 
-Notes: the integration targets released Home Assistant, so `async_setup_entry`/`async_migrate_entry`/`async_unload_entry` return `bool` (core `dev` has dropped that). `translations/en.json` is generated from `strings.json` with `[%key:...%]` references resolved, since custom integrations only load `translations/`.
+Notes: the integration targets released Home Assistant (2026.8+, `voluptuous`; core `dev` has moved to `probatio`), so `async_setup_entry`/`async_migrate_entry`/`async_unload_entry` return `bool` (core `dev` has dropped that). `translations/en.json` is generated from `strings.json` with `[%key:...%]` references resolved, since custom integrations only load `translations/`.
